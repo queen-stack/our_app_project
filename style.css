@@ -1,0 +1,44 @@
+
+
+body {
+  font-family: 'Times New Roman', sans-serif;
+  font-size: 14px;
+  font-weight: bold;
+  line-height: 2;
+  background-color: beige;
+}
+
+.container{
+  background: rgb(116, 71, 71);
+  border: solid;
+  resize: auto;
+  color: #Blue;
+  border-center: 1px solid black;
+  padding: 5px;
+  font-family: 'Times New Roman', sans-serif;
+  font-size: 10px;
+  line-height: 2;
+}
+
+.submit
+  text-align: center;
+  background-color: black;
+  color: white;
+  border-radius: 10px;
+  border-bottom: 10px solid black;
+}
+
+
+
+
+input[type="submit"] {
+  border-left: 1px solid black;
+  border-top-right-radius: 15px;
+  border-bottom-right-radius: 15px;
+  background-color: #06AED5;
+  color: white;
+}
+
+
+
+
