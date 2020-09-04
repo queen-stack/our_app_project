@@ -114,7 +114,7 @@ form input {
     box-shadow: rgba(0, 0, 0, 0.15) 0px 2px 8px 0px;
     color: hsl(206, 17%, 28%);
     font-size: 18px;
-    margin: 0 auto;
+    margin-left: 250px;
     max-width: 800px;
     padding: 10px 20px;
     height: 400px;
@@ -123,11 +123,22 @@ form input {
 
   li {
      list-style: none;
+
   }
 
   #history {
-    margin-left: 300px; 
+    margin-left: 350px; 
     padding: 10px 20px;
     width: 200px
   }
 
+/* MEDIA QUERY FOR TABLETS AND SMALLER */
+@media screen and (max-width: 768px) {
+
+}
+
+
+/* MEDIA QUERY FOR MOBILE PHONES AND SMALLER */
+@media screen and (max-width: 575px) {
+
+}
