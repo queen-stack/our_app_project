@@ -11,10 +11,10 @@
     <!-- Linked to the CSS Stylesheet -->
     <link rel="stylesheet" href="./assets/css/style.css" />
     <title>Search A Word</title>
-    
+
 </head>
 
-<body >
+<body>
     <header class="hero">
         <h2 class="page-title"> Search A Word!</h2>
         <p>A tool to get the definition and hear the pronoucation for any word.
@@ -22,72 +22,72 @@
     </header>
 
     <div class="row no-gutters"></div>
-        <main class="col-12 col-lg-9 d-flex flex-column" id="word-search">
-            <div class="m-5 row justify-content-around">
-               <!-- <div class="col-1">
+    <main class="col-12 col-lg-9 d-flex flex-column" id="word-search">
+        <div class="m-5 row justify-content-around">
+            <!-- <div class="col-1">
                     <div class="card">
                     
                     </div>-->
-                
-                <!--word container-->
-                <div class="col-8 col-md-6 col-xl-6 mb-6  flex-column">
-                    <div class="card ">
-                        <h4 class="card-header">Search for City:</h4>
-                        <form id="word-form" class="card-body">
-                            <label class="form-lable" for="cityname"></label>
-                            <input type="text" id="wordText" class="text" placeholder="Definition" />
-                            <button class="btn" id="wordBtn" type="submit"><i class="fas fa-search"></i></button>
-                        </form>
+
+            <!--word container-->
+            <div class="col-8 col-md-6 col-xl-6 mb-6  flex-column">
+                <div class="card">
+                    <h4 class="card-header">Search for Word:</h4>
+                    <form id="word-form" class="card-body">
+                        <label class="form-lable" for="cityname"></label>
+                        <input type="text" id="wordText" class="text" placeholder="Definition" />
+                        <button class="btn" id="wordBtn" type="submit"><i class="fas fa-search"></i></button>
+                    </form>
+                    <div>
                         <div>
-                            <div>
-                                <ul>
-                                    <li>create</li>
-                                </ul>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-                <div class="col-3 col-md-6 col-xl-4 mb-6 d-flex flex-column">
-                    <div class="card" id="history">
-                        <h4 class="card-header">Previous</h4>
-                        <div class="card-body" id="history-search">
                             <ul>
-                                <li>.textContent Word</li>
-                                <li>.textContent Word</li>
-                                <li>.textContent Word</li>
-                                <li>.textContent Word</li>
-                                <li>.textContent Word</li>
+                                <li>create</li>
                             </ul>
                         </div>
                     </div>
-
                 </div>
             </div>
-        </main>
-    </div>
+            <div class="col-3 col-md-6 col-xl-4 mb-6 d-flex flex-column">
+                <div class="card" id="history">
+                    <h4 class="card-header">Previous</h4>
+                    <div class="card-body" id="history-search">
+                        <ul id="searchHistoryList">
+                            <li>.textContent Word</li>
+                            <li>.textContent Word</li>
+                            <li>.textContent Word</li>
+                            <li>.textContent Word</li>
+                            <li>.textContent Word</li>
+                        </ul>
+                    </div>
+                </div>
 
- <!-- Trigger/Open The Modal -->
- <section class="modal-container">
-    <!-- The Modal -->
-    <div id="modalWindow" class="modal">
-
-        <!-- Modal content -->
-        <div class="modal-content">
-            <h2>Random Word</h2>
-            <button onclick="randomWord();" id="randomBtn">random word!</button>
-            <h3>Word:</h3>
-            <div id="title-container"></div>
-            <h3>Definition:</h3>
-            <div id="p-container">
             </div>
         </div>
-
+    </main>
     </div>
-</section> 
+
+    <!-- Trigger/Open The Modal -->
+    <section class="modal-container">
+        <!-- The Modal -->
+        <div id="modalWindow" class="modal">
+
+            <!-- Modal content -->
+            <div class="modal-content">
+                <h2>Random Word</h2>
+                <button onclick="randomWord();" id="randomBtn">random word!</button>
+                <h3>Word:</h3>
+                <div id="title-container"></div>
+                <h3>Definition:</h3>
+                <div id="p-container">
+                </div>
+            </div>
+
+        </div>
+    </section>
 
     <script src="https://code.jquery.com/jquery-3.4.1.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.24.0/moment.min.js"></script>
-    <script src="./assets/js/script.js" type="text/javascript" charset="UTF-8"></script>
+    <script src="./assets/js/script1.js" type="text/javascript" charset="UTF-8"></script>
 </body>
 
 </html>
