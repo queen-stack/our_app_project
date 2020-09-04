@@ -16,7 +16,7 @@ var searchHistory;
         }).then(function(response) {
             // assign the data variables
             var word = response.word
-            console.log(response)
+
             // the api does not give the definition
             // Will have to tell the user that there is no definition
             var definition
@@ -34,6 +34,7 @@ var searchHistory;
             wordTitle.innerHTML = "";
             defBody.innerHTML = "";
 
+
             // Create elements
             // Random word
             var titleEl = document.createElement('h4');
@@ -46,16 +47,26 @@ var searchHistory;
             // append the data element to the page
             wordTitle.appendChild(titleEl);
             defBody.appendChild(bodyEl);
+
+            //testing random word search history
+            updateSearchHistory(word);
+
+
+
         })
         .catch(err => {
             console.log(err);
         });
 };
+
+// This is the error modal that the user sees instead of alerts
+
 // Uses the const localStorageKey listed above.
 function recallSearchHistory() {
     searchHistory = JSON.parse(localStorage.getItem(localStorageKey)) || [];
     showItem();
 }
+
 
 // Lower-case word to the check if it's in search history to locate if user typed:  "hi", "Hi" or "HI".
 // Added a while loop to limit size of the array to 5 (or adjust the constant).
@@ -69,31 +80,21 @@ function updateSearchHistory(searchedWord) {
         localStorage.setItem(localStorageKey, JSON.stringify(searchHistory));
         showItem();
     }
-
 }
 
 
 // Change "searchOfWords" to whatever ID given in list of searched for words in the HTML.
 function showItem() {
-var ul = document.getElementById("searchHistoryList");
+    var ul = document.getElementById("searchHistoryList");
     // Display users and messages in the browser
     $('#searchHistoryList').empty();
     for (var i = 0; i < searchHistory.length; i++) {
         var li = document.createElement("li");
         li.innerHTML = searchHistory[i];
-        console.log(li)
-        if (li !== null){
-            ul.appendChild(li);
-        }
-        
+        ul.appendChild(li);
     }
 }
-// wordInputEl.addEventListener('submit', validateSearchCriteria);
-//wordListEl.addEventListener('click', function (event) {
-
-    // var wordDefine = event.srcElement.innerHTML;
-    // fetchCurrentWord(wordDefine);
 
 // This will load up the search history when the page is loaded.
 recallSearchHistory();
-randomWord(); 
+randomWord();
