@@ -1,112 +1,100 @@
-var oxfordApiKey = '1b9aa721';
-var wordInputEl = document.querySelector("#wordForm");
-const localStorageKey = 'wordData';
-var searchHistory;
-var wordListEl = document.querySelector("#searchOfWords");
+const localStorageKey = 'wordSearchData';
+const MAX_SEARCH_HISTORY = 5;
+var searchHistory; 
 
-// Make sure that the user actually typed something before calling the API.
-function validateSearchCriteria(e) {
-    e.preventDefault();
-    var wordDefine = document.querySelector("#wordText").value.trim();
-    //wordDefine = wordDefine.trim();
-    if (wordDefine !== '') {
-        fetchCurrentWord(wordDefine);
-    }
-}
-
-// Call the word define API to verify that the definition  that will be found
-// and to retrieved.
-function fetchCurrentWord(wordDefine) {
-    // fetch("https://od-api.oxforddictionaries.com/api/v2/"
-    // + endpoint 
-    // + language_code 
-    // + word_id.lower()
-    // + '&appid=' + //ApiKey
-    )
-        .then(function (response) {
-            if (response.status !== 200) {
-                // report an error to the user   (TBD)
-
+//var randomWord = function() {
+    function randomWord() {
+    fetch("https://wordsapiv1.p.rapidapi.com/words/?random=true", {
+            "method": "GET",
+            "headers": {
+                "x-rapidapi-host": "wordsapiv1.p.rapidapi.com",
+                "x-rapidapi-key": "e8fc098c2emsh10a4d146e4331acp1b1ed0jsn40b66b5dada6"
             }
-
-            response = response.json()
-            response.then(function (data) {
-               // define what added data to pull or store if any
-            });
         })
-        .catch(function (err) {
-            // Display a "fail" message to the user.  (TBD)
+        .then(function(response) {
+            return response.json();
+        }).then(function(response) {
+            // assign the data variables
+            var word = response.word
 
-        });
-}
+            // the api does not give the definition
+            // Will have to tell the user that there is no definition
+            var definition
+            if (response.results === undefined || response.results.length === 0) {
+                definition = "Definition Not Available"
+            } else {
+                definition = response.results[0].definition;
+            };
 
-// Call the  API to retrieve all the info required for display.
-function fetchFutureForecast(wordDefine, oneCallUrl) {
-    fetch(oneCallUrl)
-        .then(function (response) {
-            if (response.status !== 200) {
-                // report an error to the user  (TBD)
+            // Create variables for the h4 and the p elements to define
+            var wordTitle = document.querySelector("#title-container")
+            var defBody = document.querySelector("#p-container")
 
-                return;
-            }
+            // Empty out the h4 and the p elements for the random word
+            wordTitle.innerHTML = "";
+            defBody.innerHTML = "";
 
-            response = response.json();
-            response.then(function (data) {
-                populatePage(wordDefine, data);
-            });
+
+            // Create elements
+            // Random word
+            var titleEl = document.createElement('h4');
+            var bodyEl = document.createElement('p');
+
+            // giving the data an element
+            titleEl.textContent = word;
+            bodyEl.textContent = definition;
+
+            // append the data element to the page
+            wordTitle.appendChild(titleEl);
+            defBody.appendChild(bodyEl);
+
+            //testing random word search history
+            updateSearchHistory(word);
+
+
+
         })
-        .catch(function (err) {
-            // Display a "fail" message to the user.  (TBD)
-
+        .catch(err => {
+            console.log(err);
         });
-}
+};
 
+// This is the error modal that the user sees instead of alerts
 
-// This is  basic  to outline how to pull and display the data.
-// Needs to be set up with correct elements in the html and accompanying .css
-function populatePage(wordDefine, data) {
-
-
-// This is for functional requirements in the text box
-// there needs to be container for the text entry, definition
-
-//     var searchedWord = document.querySelector('#searchedWord-container');
-//     var dateOut = moment.unix(data.current.dt);
-//     updateSearchHistory(wordDefine);define and outline modal
-
-// }
-
-
-
+// Uses the const localStorageKey listed above.
 function recallSearchHistory() {
     searchHistory = JSON.parse(localStorage.getItem(localStorageKey)) || [];
     showItem();
 }
 
-function updateSearchHistory(savedWordDefine) {
-    if (!searchHistory.includes(savedWordDefine)) {
-        searchHistory.push(savedWordDefine);
+
+// Lower-case word to the check if it's in search history to locate if user typed:  "hi", "Hi" or "HI".
+// Added a while loop to limit size of the array to 5 (or adjust the constant).
+function updateSearchHistory(searchedWord) {
+    searchedWord = searchedWord.toLowerCase();                
+    if (!searchHistory.includes(searchedWord)) {
+        searchHistory.push(searchedWord);
+        while (searchHistory.length > MAX_SEARCH_HISTORY) {
+           searchHistory.shift();  //throwing away the first value in the list
+        }
         localStorage.setItem(localStorageKey, JSON.stringify(searchHistory));
         showItem();
     }
-
 }
 
+
+// Change "searchOfWords" to whatever ID given in list of searched for words in the HTML.
 function showItem() {
-    var ul = document.getElementById("searchOfWords");
+    var ul = document.getElementById("searchHistoryList");
     // Display users and messages in the browser
-    $('#searchOfWords').empty();
+    $('#searchHistoryList').empty();
     for (var i = 0; i < searchHistory.length; i++) {
         var li = document.createElement("li");
         li.innerHTML = searchHistory[i];
         ul.appendChild(li);
     }
 }
-wordInputEl.addEventListener('submit', validateSearchCriteria);
-wordListEl.addEventListener('click', function (event) {
 
-    var wordDefine = event.srcElement.innerHTML;
-    fetchCurrentWord(wordDefine);
-});
-
+// This will load up the search history when the page is loaded.
 recallSearchHistory();
+randomWord();
