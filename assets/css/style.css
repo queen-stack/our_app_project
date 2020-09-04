@@ -1,0 +1,144 @@
+body {
+    font-family: 'Times New Roman', sans-serif;
+    font-size: 14px;
+    font-weight: bold;
+    line-height: 2;
+    background-color: beige;
+    margin: 0;
+    padding: 0;
+    display: flex;
+    flex-direction: column;
+}
+
+.container {
+    background: whitesmoke;
+    border: solid;
+    resize: auto;
+    color: black;
+    padding: 5px;
+    font-family: 'Times New Roman', sans-serif;
+    font-size: 10px;
+    line-height: 2;
+}
+
+/*.submit {
+    text-align: center;
+    background-color: #c2b5c7;
+    color: white;
+    border-radius: 10px;
+    border-bottom: 10px solid #c2b5c7;
+}
+
+input[type="submit"] {
+    border-left: 1px solid black;
+    border-top-right-radius: 15px;
+    border-bottom-right-radius: 15px;
+    background-color: #06AED5;
+    color: white;
+}*/
+
+
+/* The Modal (background) */
+
+.modal-container {
+    background: black;
+    margin-left: 200px;
+    display: none;
+}
+
+.modal {
+    display: flex;
+    /* Stay in place */
+    z-index: 1;
+    /* Sit on top */
+    padding-top: 100px;
+    /* Location of the box */
+    left: 100px;
+    top: 0;
+    width: 70%;
+    /* Full width */
+    height: 100%;
+}
+
+
+/* Modal Content */
+
+.modal-content {
+    background-color: #fefefe;
+    margin: auto;
+    margin-bottom: 20px;
+    padding: 25px;
+    border: 1px solid #c2b5c7;
+    border-radius: 20px;
+    width: 80%;
+}
+
+/* apply header styles to */
+header {
+    background-color: #c2b5c7;
+    color: beige;
+    display: block;
+    justify-content: center;
+    text-align: center;
+    flex-wrap: wrap;
+    position: sticky;
+    position: -webkit-sticky;
+    top: 0;
+    background-size: cover;
+    background-attachment: fixed;
+    background-position: 80%;
+}
+
+header h1 {
+    text-shadow: 0 0 10px #f7dcdc;
+}
+
+header p {
+    text-decoration: none;
+    color: beige;
+}
+/*end header styles */
+
+form input {
+    background-color: hsl(0, 0%, 100%);
+    border-radius: 5px;
+    border-width: 1px;
+    box-shadow: rgba(0, 0, 0, 0.15) 0px 2px 8px 0px;
+    color: hsl(206, 17%, 28%);
+  }
+  
+.card {
+    background-color: hsl(0, 0%, 100%);
+    border-radius: 5px;
+    border-width: 1px;
+    box-shadow: rgba(0, 0, 0, 0.15) 0px 2px 8px 0px;
+    color: hsl(206, 17%, 28%);
+    font-size: 18px;
+    margin-left: 250px;
+    max-width: 800px;
+    padding: 10px 20px;
+    height: 400px;
+    width: 500px;
+  }
+
+  li {
+     list-style: none;
+
+  }
+
+  #history {
+    margin-left: 350px; 
+    padding: 10px 20px;
+    width: 200px
+  }
+
+/* MEDIA QUERY FOR TABLETS AND SMALLER */
+@media screen and (max-width: 768px) {
+
+}
+
+
+/* MEDIA QUERY FOR MOBILE PHONES AND SMALLER */
+@media screen and (max-width: 575px) {
+
+}

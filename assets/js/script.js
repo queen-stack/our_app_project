@@ -16,7 +16,7 @@ var searchHistory;
         }).then(function(response) {
             // assign the data variables
             var word = response.word
-
+            console.log(response)
             // the api does not give the definition
             // Will have to tell the user that there is no definition
             var definition
