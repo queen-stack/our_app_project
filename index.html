@@ -2,11 +2,14 @@
 <html lang="en">
 
 <head>
-   <link rel="stylesheet" href="style.css">
-   <meta charset="UTF-8">
-   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-   <meta http-equiv="X-UA-Compatible" content="ie=edge" />
-   <title>placeholder</title>
+    <!-- Linked to the CSS Stylesheet -->
+    <link rel="stylesheet" href="style.css">
+    <!-- Linked with Bootstrap -->
+    <!-- <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous"> -->
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge" />
+    <title>placeholder</title>
 </head>
 
 <body>
@@ -26,12 +29,28 @@
    </ul>
 </div>
 
+    <!-- Trigger/Open The Modal -->
+    <section class="modal-container">
+        <!-- The Modal -->
+        <div id="modalWindow" class="modal">
 
-   <script src="https://code.jquery.com/jquery-3.4.1.min.js"></script>
-   <script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.24.0/moment.min.js"></script>
-   <script src="./script.js" type="text/javascript" charset="UTF-8"></script>
+            <!-- Modal content -->
+            <div class="modal-content">
+                <h2>Random Word</h2>
+                <button onclick="randomWord();" id="randomBtn">random word!</button>
+                <h3>Word:</h3>
+                <div id="title-container"></div>
+                <h3>Definition:</h3>
+                <div id="p-container">
+                </div>
+            </div>
 
+        </div>
+    </section>
 
+    <script src="https://code.jquery.com/jquery-3.4.1.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.24.0/moment.min.js"></script>
+    <script src="./assets/js/script.js" type="text/javascript" charset="UTF-8"></script>
 </body>
 
 </html>

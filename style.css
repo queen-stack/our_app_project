@@ -1,44 +1,70 @@
-
-
 body {
-  font-family: 'Times New Roman', sans-serif;
-  font-size: 14px;
-  font-weight: bold;
-  line-height: 2;
-  background-color: beige;
+    font-family: 'Times New Roman', sans-serif;
+    font-size: 14px;
+    font-weight: bold;
+    line-height: 2;
+    background-color: beige;
 }
 
-.container{
-  background: rgb(116, 71, 71);
-  border: solid;
-  resize: auto;
-  color: Blue;
-  border-inline: 1px solid black;
-  padding: 5px;
-  font-family: 'Times New Roman', sans-serif;
-  font-size: 10px;
-  line-height: 2;
+.container {
+    background: whitesmoke;
+    border: solid;
+    resize: auto;
+    color: black;
+    padding: 5px;
+    font-family: 'Times New Roman', sans-serif;
+    font-size: 10px;
+    line-height: 2;
 }
 
-.submit{
-  text-align: center;
-  background-color: black;
-  color: white;
-  border-radius: 10px;
-  border-bottom: 10px solid black;
+.submit {
+    text-align: center;
+    background-color: black;
+    color: white;
+    border-radius: 10px;
+    border-bottom: 10px solid black;
 }
-
-
-
 
 input[type="submit"] {
-  border-left: 1px solid black;
-  border-top-right-radius: 15px;
-  border-bottom-right-radius: 15px;
-  background-color: #06AED5;
-  color: white;
+    border-left: 1px solid black;
+    border-top-right-radius: 15px;
+    border-bottom-right-radius: 15px;
+    background-color: #06AED5;
+    color: white;
 }
 
 
+/* The Modal (background) */
+
+.modal-container {
+    background: black;
+    margin-left: 200px;
+    display: flex;
+}
+
+.modal {
+    display: flex;
+    /* Stay in place */
+    z-index: 1;
+    /* Sit on top */
+    padding-top: 100px;
+    /* Location of the box */
+    left: 100px;
+    top: 0;
+    width: 70%;
+    /* Full width */
+    height: 100%;
+}
 
 
+/* Modal Content */
+
+.modal-content {
+    background-color: #fefefe;
+    margin: auto;
+    margin-bottom: 20px;
+    padding: 25px;
+    border: 1px solid #888;
+    border-radius: 20px;
+    width: 80%;
+}
