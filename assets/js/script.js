@@ -1,4 +1,9 @@
-var randomWord = function() {
+const localStorageKey = 'wordSearchData';
+const MAX_SEARCH_HISTORY = 5;
+var searchHistory; 
+
+//var randomWord = function() {
+    function randomWord() {
     fetch("https://wordsapiv1.p.rapidapi.com/words/?random=true", {
             "method": "GET",
             "headers": {
@@ -46,5 +51,49 @@ var randomWord = function() {
             console.log(err);
         });
 };
+// Uses the const localStorageKey listed above.
+function recallSearchHistory() {
+    searchHistory = JSON.parse(localStorage.getItem(localStorageKey)) || [];
+    showItem();
+}
 
-// This is the error modal that the user sees instead of alerts
+// Lower-case word to the check if it's in search history to locate if user typed:  "hi", "Hi" or "HI".
+// Added a while loop to limit size of the array to 5 (or adjust the constant).
+function updateSearchHistory(searchedWord) {
+    searchedWord = searchedWord.toLowerCase();                
+    if (!searchHistory.includes(searchedWord)) {
+        searchHistory.push(searchedWord);
+        while (searchHistory.length > MAX_SEARCH_HISTORY) {
+           searchHistory.shift();  //throwing away the first value in the list
+        }
+        localStorage.setItem(localStorageKey, JSON.stringify(searchHistory));
+        showItem();
+    }
+
+}
+
+
+// Change "searchOfWords" to whatever ID given in list of searched for words in the HTML.
+function showItem() {
+var ul = document.getElementById("searchHistoryList");
+    // Display users and messages in the browser
+    $('#searchHistoryList').empty();
+    for (var i = 0; i < searchHistory.length; i++) {
+        var li = document.createElement("li");
+        li.innerHTML = searchHistory[i];
+        console.log(li)
+        if (li !== null){
+            ul.appendChild(li);
+        }
+        
+    }
+}
+// wordInputEl.addEventListener('submit', validateSearchCriteria);
+//wordListEl.addEventListener('click', function (event) {
+
+    // var wordDefine = event.srcElement.innerHTML;
+    // fetchCurrentWord(wordDefine);
+
+// This will load up the search history when the page is loaded.
+recallSearchHistory();
+randomWord(); 
