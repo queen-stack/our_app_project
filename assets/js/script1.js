@@ -1,45 +1,43 @@
 const localStorageKey = 'wordSearchData';
 const MAX_SEARCH_HISTORY = 5;
-var searchHistory; 
+var searchHistory;
+var inputEl = document.getElementById("wordText");
+var wordBtnEl = document.getElementById("wordBtn");
 
-// wordSearch
-function searchWord(searchTerm) {
-    fetch("https://wordsapiv1.p.rapidapi.com/words/" + searchTerm, {
-            "method": "GET",
-            "headers": {
-                "x-rapidapi-host": "wordsapiv1.p.rapidapi.com",
-                "x-rapidapi-key": "e8fc098c2emsh10a4d146e4331acp1b1ed0jsn40b66b5dada6"
-            }
-    })
-    .then(response => response.json())
-    .then(function(response) {
-       
-        // word name
-        if (!response.word.ok) {
-            var wordName = response.word;
-        } else {
-            var wordName = 'word name not available'
-        }
+function logAttributes(obj) {
+    if (document.getElementById("output-div") != null) {
+        document.getElementById("output-div").remove();
+    }
 
-        // word definition
-        if (!response.results[0].definition.ok) {
-            var wordDefinition = response.results[0].definition;
-        } else {
-            var wordDefinition = 'word definition not available'
-        }
+    let outputDivEl = document.createElement('div');
+    outputDivEl.id = "output-div";
+    document.getElementById('word-container').appendChild(outputDivEl);
 
-        // word pronunciation
-        if (!response.pronunciation.all.ok) {
-            var wordPronunciation = response.pronunciation.all
-        } else {
-            var wordPronunciation = 'word pronuncition not available'
-        }
+    let wordNameEl = document.createElement("p");
+    wordNameEl.innerHTML = 'Word: ' + obj[0].hwi.hw;
+    document.getElementById('output-div').appendChild(wordNameEl);
 
-        // html elements
-        var replyEl = document.createElement('p');
-        replyEl.innerHTML = 'Word: ' + wordName + '<br/>' + 'Definition: ' + wordDefinition + '<br/>' + 'Pronunciation: ' + wordPronunciation;
-        document.getElementById('search-card').appendChild(replyEl);
+    let wordPronEl = document.createElement('p');
+    wordPronEl.innerHTML = 'Pronunciation: ' + obj[0].hwi.prs[0].mw;
+    document.getElementById('output-div').appendChild(wordPronEl)
+   
+    let wordDescripEl = document.createElement('p');
+    wordDescripEl.innerHTML = 'Definition: ' + obj[0].shortdef[0];
+    document.getElementById('output-div').appendChild(wordDescripEl);
+    
+    let audio = new Audio ('https://media.merriam-webster.com/audio/prons/en/us/mp3/' + obj[0].hwi.prs[0].sound.audio[0] + '/' + obj[0].hwi.prs[0].sound.audio + '.mp3');
+    let playBtnEl = document.createElement('button');
+    playBtnEl.textContent = 'Play';
+    playBtnEl.id = 'play-btn';
+    document.getElementById('output-div').appendChild(playBtnEl);
+    document.getElementById('play-btn').addEventListener('click', function() {
+        audio.play();
     });
+}
+
+function getApiData(searchText) {
+    fetch('https://www.dictionaryapi.com/api/v3/references/collegiate/json/' + searchText + '?key=ec647c6b-fb7b-4fbf-a04f-e2348323bb08')
+    .then(res => res.json()).then(json => logAttributes(json));
 }
 
 //var randomWord = function() {
@@ -125,18 +123,22 @@ function updateSearchHistory(searchedWord) {
 
 // Change "searchOfWords" to whatever ID given in list of searched for words in the HTML.
 function showItem() {
-    var ul = document.getElementById("searchHistoryList");
+    var historyE1 = document.getElementById("searchHistoryList");
     // Display users and messages in the browser
     $('#searchHistoryList').empty();
     for (var i = 0; i < searchHistory.length; i++) {
-        var li = document.createElement("li");
-        li.innerHTML = searchHistory[i];
-        ul.appendChild(li);
+        var p = document.createElement("p");
+        p.innerHTML = searchHistory[i];
+        historyE1.appendChild(p);
     }
 }
-
-//
 
 // This will load up the search history when the page is loaded.
 recallSearchHistory();
 randomWord();
+
+
+wordBtnEl.addEventListener("click", function(event) {
+    event.preventDefault();
+    getApiData(inputEl.value);
+  });
