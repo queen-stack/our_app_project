@@ -42,7 +42,7 @@ input[type="submit"] {
 .modal-container {
     background: black;
     margin-left: 200px;
-    display: flex;
+    display: none;
 }
 
 .modal {
