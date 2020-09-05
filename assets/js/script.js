@@ -1,4 +1,9 @@
-var randomWord = function() {
+const localStorageKey = 'wordSearchData';
+const MAX_SEARCH_HISTORY = 5;
+var searchHistory; 
+
+//var randomWord = function() {
+    function randomWord() {
     fetch("https://wordsapiv1.p.rapidapi.com/words/?random=true", {
             "method": "GET",
             "headers": {
@@ -11,7 +16,7 @@ var randomWord = function() {
         }).then(function(response) {
             // assign the data variables
             var word = response.word
-            console.log(response)
+
             // the api does not give the definition
             // Will have to tell the user that there is no definition
             var definition
@@ -29,6 +34,7 @@ var randomWord = function() {
             wordTitle.innerHTML = "";
             defBody.innerHTML = "";
 
+
             // Create elements
             // Random word
             var titleEl = document.createElement('h4');
@@ -41,6 +47,12 @@ var randomWord = function() {
             // append the data element to the page
             wordTitle.appendChild(titleEl);
             defBody.appendChild(bodyEl);
+
+            //testing random word search history
+            updateSearchHistory(word);
+
+
+
         })
         .catch(err => {
             console.log(err);
@@ -48,3 +60,41 @@ var randomWord = function() {
 };
 
 // This is the error modal that the user sees instead of alerts
+
+// Uses the const localStorageKey listed above.
+function recallSearchHistory() {
+    searchHistory = JSON.parse(localStorage.getItem(localStorageKey)) || [];
+    showItem();
+}
+
+
+// Lower-case word to the check if it's in search history to locate if user typed:  "hi", "Hi" or "HI".
+// Added a while loop to limit size of the array to 5 (or adjust the constant).
+function updateSearchHistory(searchedWord) {
+    searchedWord = searchedWord.toLowerCase();                
+    if (!searchHistory.includes(searchedWord)) {
+        searchHistory.push(searchedWord);
+        while (searchHistory.length > MAX_SEARCH_HISTORY) {
+           searchHistory.shift();  //throwing away the first value in the list
+        }
+        localStorage.setItem(localStorageKey, JSON.stringify(searchHistory));
+        showItem();
+    }
+}
+
+
+// Change "searchOfWords" to whatever ID given in list of searched for words in the HTML.
+function showItem() {
+    var historyE1 = document.getElementById("searchHistoryList");
+    // Display users and messages in the browser
+    $('#searchHistoryList').empty();
+    for (var i = 0; i < searchHistory.length; i++) {
+        var p = document.createElement("p");
+        p.innerHTML = searchHistory[i];
+        historyE1.appendChild(p);
+    }
+}
+
+// This will load up the search history when the page is loaded.
+recallSearchHistory();
+randomWord();

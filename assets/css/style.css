@@ -3,15 +3,17 @@ body {
     font-size: 14px;
     font-weight: bold;
     line-height: 2;
-    background-color: beige;
+    background-color: #f5f5f5;
     margin: 0;
     padding: 0;
     display: flex;
     flex-direction: column;
+    justify-content: flex-start;
+    position: realitive;
 }
 
-.container {
-    background: whitesmoke;
+/*.container {
+    background: #f5f5f5;
     border: solid;
     resize: auto;
     color: black;
@@ -21,14 +23,13 @@ body {
     line-height: 2;
 }
 
-/*.submit {
+.submit {
     text-align: center;
     background-color: #c2b5c7;
     color: white;
     border-radius: 10px;
     border-bottom: 10px solid #c2b5c7;
 }
-
 input[type="submit"] {
     border-left: 1px solid black;
     border-top-right-radius: 15px;
@@ -37,9 +38,7 @@ input[type="submit"] {
     color: white;
 }*/
 
-
 /* The Modal (background) */
-
 .modal-container {
     background: black;
     margin-left: 200px;
@@ -60,9 +59,7 @@ input[type="submit"] {
     height: 100%;
 }
 
-
 /* Modal Content */
-
 .modal-content {
     background-color: #fefefe;
     margin: auto;
@@ -75,28 +72,39 @@ input[type="submit"] {
 
 /* apply header styles to */
 header {
-    background-color: #c2b5c7;
-    color: beige;
-    display: block;
-    justify-content: center;
-    text-align: center;
-    flex-wrap: wrap;
-    position: sticky;
-    position: -webkit-sticky;
-    top: 0;
-    background-size: cover;
-    background-attachment: fixed;
-    background-position: 80%;
+  background-color: #c2b5c7;
+  color: #f5f5f5;
+  display: block;
+  justify-content: center;
+  text-align: center;
+  flex-wrap: wrap;
+  position: sticky;
+  position: -webkit-sticky;
 }
 
-header h1 {
-    text-shadow: 0 0 10px #f7dcdc;
+header h2 {
+    text-shadow: 0 0 10px #fccccc;
 }
 
-header p {
-    text-decoration: none;
-    color: beige;
+header div {
+  text-shadow: 0 0 10px #fccccc;
+  text-align: left;  
+  padding-left: 10px;
 }
+
+header div a{
+  text-decoration: none;
+  color: #f5f5f5;
+  
+}
+/* mouse over link */
+a:hover {
+  text-decoration: none;
+  color: #f5f5f5;
+  font-family: Impact, Charcoal, sans-serif;
+
+}
+
 /*end header styles */
 
 form input {
@@ -104,41 +112,80 @@ form input {
     border-radius: 5px;
     border-width: 1px;
     box-shadow: rgba(0, 0, 0, 0.15) 0px 2px 8px 0px;
-    color: hsl(206, 17%, 28%);
-  }
+    color: hsl(287, 15%, 36%);
+}
+
+.flex-column {
+    justify-content: center;
+    padding: 20px 20px;
+}
+
+#title-container {
+  justify-content: center;
+  padding: 10px ;
+  
+}
+
+#word-search {
+  justify-content: space-around;
+  padding: 10px 20px;
+  position: relative;
+  display: flex;
+  flex-direction: column;
+}
   
 .card {
     background-color: hsl(0, 0%, 100%);
     border-radius: 5px;
     border-width: 1px;
     box-shadow: rgba(0, 0, 0, 0.15) 0px 2px 8px 0px;
-    color: hsl(206, 17%, 28%);
+    color: hsl(287, 15%, 36%);
     font-size: 18px;
-    margin-left: 250px;
+    flex-wrap: wrap;
+    margin-left: 200px;
+    justify-content: space-between;
     max-width: 800px;
-    padding: 10px 20px;
+    padding: 20px 20px;
     height: 400px;
     width: 500px;
-  }
-
-  li {
-     list-style: none;
 
   }
 
   #history {
-    margin-left: 350px; 
     padding: 10px 20px;
-    width: 200px
+    width: 250px
+  }
+  #history-search{
+    margin-right: 0px;
+    display: block;
+
   }
 
 /* MEDIA QUERY FOR TABLETS AND SMALLER */
-@media screen and (max-width: 768px) {
+@media screen and (max-width: 950px) {
+
+  .card {
+    margin-left: unset;
+    width: 350px;
+    padding: 20px;
+    
+
+  }
+  header {
+    display: flexbox;
+   
+  }
 
 }
-
 
 /* MEDIA QUERY FOR MOBILE PHONES AND SMALLER */
-@media screen and (max-width: 575px) {
+@media screen and (max-width: 775px) {
+  .card {
+   
+    flex-wrap: wrap;
+    justify-content: center;
+
+  }
 
 }
+
