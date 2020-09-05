@@ -2,6 +2,46 @@ const localStorageKey = 'wordSearchData';
 const MAX_SEARCH_HISTORY = 5;
 var searchHistory; 
 
+// wordSearch
+function searchWord(searchTerm) {
+    fetch("https://wordsapiv1.p.rapidapi.com/words/" + searchTerm, {
+            "method": "GET",
+            "headers": {
+                "x-rapidapi-host": "wordsapiv1.p.rapidapi.com",
+                "x-rapidapi-key": "e8fc098c2emsh10a4d146e4331acp1b1ed0jsn40b66b5dada6"
+            }
+    })
+    .then(response => response.json())
+    .then(function(response) {
+       
+        // word name
+        if (!response.word.ok) {
+            var wordName = response.word;
+        } else {
+            var wordName = 'word name not available'
+        }
+
+        // word definition
+        if (!response.results[0].definition.ok) {
+            var wordDefinition = response.results[0].definition;
+        } else {
+            var wordDefinition = 'word definition not available'
+        }
+
+        // word pronunciation
+        if (!response.pronunciation.all.ok) {
+            var wordPronunciation = response.pronunciation.all
+        } else {
+            var wordPronunciation = 'word pronuncition not available'
+        }
+
+        // html elements
+        var replyEl = document.createElement('p');
+        replyEl.innerHTML = 'Word: ' + wordName + '<br/>' + 'Definition: ' + wordDefinition + '<br/>' + 'Pronunciation: ' + wordPronunciation;
+        document.getElementById('search-card').appendChild(replyEl);
+    });
+}
+
 //var randomWord = function() {
     function randomWord() {
     fetch("https://wordsapiv1.p.rapidapi.com/words/?random=true", {
@@ -94,6 +134,8 @@ function showItem() {
         ul.appendChild(li);
     }
 }
+
+//
 
 // This will load up the search history when the page is loaded.
 recallSearchHistory();
