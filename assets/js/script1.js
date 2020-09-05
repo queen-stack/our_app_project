@@ -140,6 +140,5 @@ randomWord();
 
 wordBtnEl.addEventListener("click", function(event) {
     event.preventDefault();
-    console.log('button pressed');
     getApiData(inputEl.value);
   });
