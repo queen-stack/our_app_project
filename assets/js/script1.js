@@ -85,13 +85,13 @@ function updateSearchHistory(searchedWord) {
 
 // Change "searchOfWords" to whatever ID given in list of searched for words in the HTML.
 function showItem() {
-    var ul = document.getElementById("searchHistoryList");
+    var historyE1 = document.getElementById("searchHistoryList");
     // Display users and messages in the browser
     $('#searchHistoryList').empty();
     for (var i = 0; i < searchHistory.length; i++) {
-        var li = document.createElement("li");
-        li.innerHTML = searchHistory[i];
-        ul.appendChild(li);
+        var p = document.createElement("p");
+        p.innerHTML = searchHistory[i];
+        historyE1.appendChild(p);
     }
 }
 
