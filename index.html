@@ -11,7 +11,6 @@
     <!-- Linked to the CSS Stylesheet -->
     <link rel="stylesheet" href="./assets/css/style.css" />
     <title>Word Web</title>
-    
 </head>
 
 <body >
@@ -24,11 +23,9 @@
             <a data-toggle="modal" href="#modalWindow"><h3>Word of <br><span style="color:#634e69;">the Day</span></h3></a>
         </div>
     </header>
-
     <div class="row no-gutters">
         <main class="col-12 col-lg-9 flex-column" id="word-search">
             <div class="m-5 row">
-                
                 <!--word container-->
                 <div class="col-8 flex-column" id="word-container">
                     <div class="card ">
@@ -49,25 +46,37 @@
                     <div class="card" id="history">
                         <h4 class="card-header">Previous</h4>
                         <div class="card-body" id="history-search">
-                            <p id ="searchHistoryList">
-                            
-                            </p>
+                            <p id ="searchHistoryList"></p>
                         </div>
                     </div>
                 </div>
             </div>
-        </main>
+            <div class="col-3 col-md-6 col-xl-4 mb-6 d-flex flex-column">
+                <div class="card" id="history">
+                    <h4 class="card-header">Previous</h4>
+                    <div class="card-body" id="history-search">
+                        <ul id="searchHistoryList">
+                            <li>.textContent Word</li>
+                            <li>.textContent Word</li>
+                            <li>.textContent Word</li>
+                            <li>.textContent Word</li>
+                            <li>.textContent Word</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </main>
     </div>
-
     <section class="modal-container">
         <!-- The Modal -->
         <div id="modalWindow" class="modal">
-
             <!-- Modal content -->
             <div class="card modal-content">
                 <h2 class="card-header modal-header">Random Word</h2>
                 <button onclick="randomWord();" id="randomBtn">random word!</button>
                 <h3 class="modal-title">Word:</h3>
+
                 <div id="title-container"></div>
                 <h3>Definition:</h3>
                 <div id="p-container">
