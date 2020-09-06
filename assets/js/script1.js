@@ -2,6 +2,7 @@ const localStorageKey = 'wordSearchData';
 const MAX_SEARCH_HISTORY = 5;
 var searchHistory;
 
+// Begin modal for word of the day, also need moment.js hooked up to this
 // Get the modal
 var modal = document.getElementById("wodModal");
 
