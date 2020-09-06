@@ -142,6 +142,7 @@ form input {
     color: hsl(287, 15%, 36%);
     font-size: 18px;
     flex-wrap: wrap;
+    display: block;
     margin-left: 200px;
     justify-content: space-between;
     max-width: 800px;

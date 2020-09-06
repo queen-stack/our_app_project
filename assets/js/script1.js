@@ -11,7 +11,7 @@ function logAttributes(obj) {
 
     let outputDivEl = document.createElement('div');
     outputDivEl.id = "output-div";
-    document.getElementById('word-container').appendChild(outputDivEl);
+    document.getElementById('word-display').appendChild(outputDivEl);
 
     let wordNameEl = document.createElement("p");
     wordNameEl.innerHTML = 'Word: ' + obj[0].hwi.hw;
