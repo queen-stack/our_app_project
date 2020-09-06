@@ -1,6 +1,44 @@
 const localStorageKey = 'wordSearchData';
 const MAX_SEARCH_HISTORY = 5;
-var searchHistory; 
+var searchHistory;
+var inputEl = document.getElementById("wordText");
+var wordBtnEl = document.getElementById("wordBtn");
+
+function logAttributes(obj) {
+    if (document.getElementById("output-div") != null) {
+        document.getElementById("output-div").remove();
+    }
+
+    let outputDivEl = document.createElement('div');
+    outputDivEl.id = "output-div";
+    document.getElementById('word-container').appendChild(outputDivEl);
+
+    let wordNameEl = document.createElement("p");
+    wordNameEl.innerHTML = 'Word: ' + obj[0].hwi.hw;
+    document.getElementById('output-div').appendChild(wordNameEl);
+
+    let wordPronEl = document.createElement('p');
+    wordPronEl.innerHTML = 'Pronunciation: ' + obj[0].hwi.prs[0].mw;
+    document.getElementById('output-div').appendChild(wordPronEl)
+   
+    let wordDescripEl = document.createElement('p');
+    wordDescripEl.innerHTML = 'Definition: ' + obj[0].shortdef[0];
+    document.getElementById('output-div').appendChild(wordDescripEl);
+    
+    let audio = new Audio ('https://media.merriam-webster.com/audio/prons/en/us/mp3/' + obj[0].hwi.prs[0].sound.audio[0] + '/' + obj[0].hwi.prs[0].sound.audio + '.mp3');
+    let playBtnEl = document.createElement('button');
+    playBtnEl.textContent = 'Play';
+    playBtnEl.id = 'play-btn';
+    document.getElementById('output-div').appendChild(playBtnEl);
+    document.getElementById('play-btn').addEventListener('click', function() {
+        audio.play();
+    });
+}
+
+function getApiData(searchText) {
+    fetch('https://www.dictionaryapi.com/api/v3/references/collegiate/json/' + searchText + '?key=ec647c6b-fb7b-4fbf-a04f-e2348323bb08')
+    .then(res => res.json()).then(json => logAttributes(json));
+}
 
 //var randomWord = function() {
     function randomWord() {
@@ -98,3 +136,10 @@ function showItem() {
 // This will load up the search history when the page is loaded.
 recallSearchHistory();
 randomWord();
+
+
+wordBtnEl.addEventListener("click", function(event) {
+    event.preventDefault();
+    getApiData(inputEl.value);
+  });
+
