@@ -1,9 +1,35 @@
 const localStorageKey = 'wordSearchData';
 const MAX_SEARCH_HISTORY = 5;
-var searchHistory; 
+var searchHistory;
+
+// Get the modal
+var modal = document.getElementById("wodModal");
+
+// Get the button that opens the modal
+var btn = document.getElementById("wodBtn");
+
+// Get the <span> element that closes the modal
+var span = document.getElementsByClassName("close")[0];
+
+// When the user clicks the button, open the modal 
+btn.onclick = function() {
+    modal.style.display = "block";
+}
+
+// When the user clicks on <span> (x), close the modal
+span.onclick = function() {
+    modal.style.display = "none";
+}
+
+// When the user clicks anywhere outside of the modal, close it
+window.onclick = function(event) {
+    if (event.target == modal) {
+        modal.style.display = "none";
+    }
+}
 
 //var randomWord = function() {
-    function randomWord() {
+function randomWord() {
     fetch("https://wordsapiv1.p.rapidapi.com/words/?random=true", {
             "method": "GET",
             "headers": {
@@ -71,11 +97,11 @@ function recallSearchHistory() {
 // Lower-case word to the check if it's in search history to locate if user typed:  "hi", "Hi" or "HI".
 // Added a while loop to limit size of the array to 5 (or adjust the constant).
 function updateSearchHistory(searchedWord) {
-    searchedWord = searchedWord.toLowerCase();                
+    searchedWord = searchedWord.toLowerCase();
     if (!searchHistory.includes(searchedWord)) {
         searchHistory.push(searchedWord);
         while (searchHistory.length > MAX_SEARCH_HISTORY) {
-           searchHistory.shift();  //throwing away the first value in the list
+            searchHistory.shift(); //throwing away the first value in the list
         }
         localStorage.setItem(localStorageKey, JSON.stringify(searchHistory));
         showItem();

@@ -20,11 +20,25 @@
         </p>
         <div>
             <!--Trigger the Modal from a link-->
-            <a data-toggle="modal" href="#modalWindow">
+            <a data-toggle="modal" href="#modalWindow" onclick="randomWord()">
                 <h3 id="wodBtn">Word of <br><span style="color:#634e69;">the Day</span></h3>
             </a>
         </div>
     </header>
+
+    <!-- This is for the word of the day modal -->
+    <!-- The Modal -->
+    <div id="wodModal" class="modal">
+
+        <!-- Modal content -->
+        <div class="modal-content">
+            <span class="close">&times;</span>
+            <p>Some text in the Modal..</p>
+        </div>
+
+    </div>
+    <!-- End of the the modal -->
+
     <div class="row no-gutters">
         <main class="col-12 col-lg-9 flex-column" id="word-search">
             <div class="m-5 row">
