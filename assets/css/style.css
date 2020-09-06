@@ -40,6 +40,13 @@ input[type="submit"] {
 }*/
 
 
+/* word of the day link */
+
+#wodBtn {
+    padding-left: 70px;
+}
+
+
 /* The Modal (background) */
 
 .modal-container {
