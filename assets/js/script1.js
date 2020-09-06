@@ -142,3 +142,4 @@ wordBtnEl.addEventListener("click", function(event) {
     event.preventDefault();
     getApiData(inputEl.value);
   });
+
