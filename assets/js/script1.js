@@ -89,25 +89,25 @@ function randomWord() {
             };
 
             // Create variables for the h4 and the p elements to define
-            var wordTitle = document.querySelector("#title-container")
-            var defBody = document.querySelector("#p-container")
+            //var wordTitle = document.querySelector("#title-container")
+            var defBody = document.querySelector("#wodText")
 
             // Empty out the h4 and the p elements for the random word
-            wordTitle.innerHTML = "";
+            // wordTitle.innerHTML = "";
             defBody.innerHTML = "";
 
 
             // Create elements
             // Random word
-            var titleEl = document.createElement('h4');
+            // var titleEl = document.createElement('h4');
             var bodyEl = document.createElement('p');
 
             // giving the data an element
-            titleEl.textContent = word;
-            bodyEl.textContent = definition;
+            // titleEl.textContent = word;
+            bodyEl.textContent = word;
 
             // append the data element to the page
-            wordTitle.appendChild(titleEl);
+            // wordTitle.appendChild(titleEl);
             defBody.appendChild(bodyEl);
 
             //testing random word search history
