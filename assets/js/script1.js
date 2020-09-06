@@ -100,7 +100,7 @@ function randomWord() {
             // Create elements
             // Random word
             // var titleEl = document.createElement('h4');
-            var bodyEl = document.createElement('p');
+            var bodyEl = document.createElement('h3');
 
             // giving the data an element
             // titleEl.textContent = word;

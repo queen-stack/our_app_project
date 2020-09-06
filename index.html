@@ -21,7 +21,7 @@
         <div>
             <!--Trigger the Modal from a link-->
             <a data-toggle="modal" href="#modalWindow">
-                <h3 id="wodBtn">Word of <br><span style="color:#634e69;">the Day</span></h3>
+                <h3 id="wodBtn" onclick="randomWord()">Word of <br><span style="color:#634e69;">the Day</span></h3>
             </a>
         </div>
     </header>
@@ -33,7 +33,7 @@
         <div class="modal-content">
             <!-- &times; is the close (times) button -->
             <span class="close">&times;</span>
-            <div id="wodText" onclick="randomWord()">
+            <div id="wodText">
                 <p>Some text in the Modal..</p>
             </div>
         </div>
