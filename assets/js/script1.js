@@ -4,7 +4,30 @@ var searchHistory;
 var inputEl = document.getElementById("wordText");
 var wordBtnEl = document.getElementById("wordBtn");
 
-// -=- SEARCHING FOR A WORD START-=-
+// -=-Begin modal for word of the day-=-
+// need moment.js hooked up to this
+// Get the modal
+var modal = document.getElementById("wodModal");
+// Get the button that opens the modal
+var btn = document.getElementById("wodBtn");
+// Get the <span> element that closes the modal
+var span = document.getElementsByClassName("close")[0];
+// When the user clicks the button, open the modal 
+btn.onclick = function() {
+        modal.style.display = "block";
+    }
+    // When the user clicks on <span> (x), close the modal
+span.onclick = function() {
+        modal.style.display = "none";
+    }
+    // When the user clicks anywhere outside of the modal, close it
+window.onclick = function(event) {
+    if (event.target == modal) {
+        modal.style.display = "none";
+    }
+};
+// -=-END CODE FOR THE MODAL FUNCTION-=-
+
 function logAttributes(obj) {
     if (document.getElementById("output-div") != null) {
         document.getElementById("output-div").remove();
@@ -40,9 +63,7 @@ function getApiData(searchText) {
     fetch('https://www.dictionaryapi.com/api/v3/references/collegiate/json/' + searchText + '?key=ec647c6b-fb7b-4fbf-a04f-e2348323bb08')
         .then(res => res.json()).then(json => logAttributes(json));
 }
-// -=-SEARCHING FOR A WORD END-=-
 
-// -=-RANDOM WORD START-=-
 //var randomWord = function() {
 function randomWord() {
     fetch("https://wordsapiv1.p.rapidapi.com/words/?random=true", {
@@ -107,7 +128,6 @@ function recallSearchHistory() {
     searchHistory = JSON.parse(localStorage.getItem(localStorageKey)) || [];
     showItem();
 }
-// -=-RANDOM WORD END-=-
 
 
 // Lower-case word to the check if it's in search history to locate if user typed:  "hi", "Hi" or "HI".

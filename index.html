@@ -25,6 +25,19 @@
             </a>
         </div>
     </header>
+
+    <!-- This is for the word of the day modal -->
+    <!-- The Modal -->
+    <div id="wodModal" class="modal">
+        <!-- Modal content -->
+        <div class="modal-content">
+            <!-- &times; is the close (times) button -->
+            <span class="close">&times;</span>
+            <p>Some text in the Modal..</p>
+        </div>
+    </div>
+    <!-- End of the the modal -->
+
     <div class="row no-gutters">
         <main class="col-12 col-lg-9 flex-column" id="word-search">
             <div class="m-5 row">
@@ -36,9 +49,7 @@
                             <label class="form-label" for="wordText"></label>
                             <input type="text" id="wordText" class="text" placeholder="Definition" />
                             <button class="btn" id="wordBtn" type="submit"><i class="fas fa-search"></i></button>
-                            <div id="title-container">
-                                <p id="p-container">
-                                </p>
+                            <div id="word-display">
                             </div>
                         </form>
                     </div>
@@ -65,6 +76,7 @@
                 <h2 class="card-header modal-header">Random Word</h2>
                 <button onclick="randomWord();" id="randomBtn">random word!</button>
                 <h3 class="modal-title">Word:</h3>
+
                 <div id="title-container"></div>
                 <h3>Definition:</h3>
                 <div id="p-container">
