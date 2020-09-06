@@ -4,6 +4,7 @@ var searchHistory;
 var inputEl = document.getElementById("wordText");
 var wordBtnEl = document.getElementById("wordBtn");
 
+// This code is for searching a word, getting back the definition, pronunciation, and audio clip
 function logAttributes(obj) {
     if (document.getElementById("output-div") != null) {
         document.getElementById("output-div").remove();
@@ -20,12 +21,12 @@ function logAttributes(obj) {
     let wordPronEl = document.createElement('p');
     wordPronEl.innerHTML = 'Pronunciation: ' + obj[0].hwi.prs[0].mw;
     document.getElementById('output-div').appendChild(wordPronEl)
-   
+
     let wordDescripEl = document.createElement('p');
     wordDescripEl.innerHTML = 'Definition: ' + obj[0].shortdef[0];
     document.getElementById('output-div').appendChild(wordDescripEl);
-    
-    let audio = new Audio ('https://media.merriam-webster.com/audio/prons/en/us/mp3/' + obj[0].hwi.prs[0].sound.audio[0] + '/' + obj[0].hwi.prs[0].sound.audio + '.mp3');
+
+    let audio = new Audio('https://media.merriam-webster.com/audio/prons/en/us/mp3/' + obj[0].hwi.prs[0].sound.audio[0] + '/' + obj[0].hwi.prs[0].sound.audio + '.mp3');
     let playBtnEl = document.createElement('button');
     playBtnEl.textContent = 'Play';
     playBtnEl.id = 'play-btn';
@@ -37,11 +38,12 @@ function logAttributes(obj) {
 
 function getApiData(searchText) {
     fetch('https://www.dictionaryapi.com/api/v3/references/collegiate/json/' + searchText + '?key=ec647c6b-fb7b-4fbf-a04f-e2348323bb08')
-    .then(res => res.json()).then(json => logAttributes(json));
+        .then(res => res.json()).then(json => logAttributes(json));
 }
 
+// This line is for getting the random word
 //var randomWord = function() {
-    function randomWord() {
+function randomWord() {
     fetch("https://wordsapiv1.p.rapidapi.com/words/?random=true", {
             "method": "GET",
             "headers": {
@@ -97,8 +99,6 @@ function getApiData(searchText) {
         });
 };
 
-// This is the error modal that the user sees instead of alerts
-
 // Uses the const localStorageKey listed above.
 function recallSearchHistory() {
     searchHistory = JSON.parse(localStorage.getItem(localStorageKey)) || [];
@@ -109,11 +109,11 @@ function recallSearchHistory() {
 // Lower-case word to the check if it's in search history to locate if user typed:  "hi", "Hi" or "HI".
 // Added a while loop to limit size of the array to 5 (or adjust the constant).
 function updateSearchHistory(searchedWord) {
-    searchedWord = searchedWord.toLowerCase();                
+    searchedWord = searchedWord.toLowerCase();
     if (!searchHistory.includes(searchedWord)) {
         searchHistory.push(searchedWord);
         while (searchHistory.length > MAX_SEARCH_HISTORY) {
-           searchHistory.shift();  //throwing away the first value in the list
+            searchHistory.shift(); //throwing away the first value in the list
         }
         localStorage.setItem(localStorageKey, JSON.stringify(searchHistory));
         showItem();
@@ -141,5 +141,4 @@ randomWord();
 wordBtnEl.addEventListener("click", function(event) {
     event.preventDefault();
     getApiData(inputEl.value);
-  });
-
+});
