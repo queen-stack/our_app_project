@@ -13,33 +13,6 @@ body {
 }
 
 
-/*.container {
-    background: #f5f5f5;
-    border: solid;
-    resize: auto;
-    color: black;
-    padding: 5px;
-    font-family: 'Times New Roman', sans-serif;
-    font-size: 10px;
-    line-height: 2;
-}
-
-.submit {
-    text-align: center;
-    background-color: #c2b5c7;
-    color: white;
-    border-radius: 10px;
-    border-bottom: 10px solid #c2b5c7;
-}
-input[type="submit"] {
-    border-left: 1px solid black;
-    border-top-right-radius: 15px;
-    border-bottom-right-radius: 15px;
-    background-color: #06AED5;
-    color: white;
-}*/
-
-
 /* word of the day link */
 
 #wodBtn {
@@ -83,17 +56,20 @@ input[type="submit"] {
     margin: auto;
     padding: 20px;
     border: 1px solid #888;
-    width: 80%;
+    width: 40%;
+    text-align: center;
 }
 
 
 /* The Close Button */
 
 .close {
-    color: #aaaaaa;
+    color: #f4511e;
     float: right;
     font-size: 28px;
     font-weight: bold;
+    text-align: right;
+    transition: 0.3s;
 }
 
 
@@ -101,7 +77,8 @@ input[type="submit"] {
 
 .close:hover,
 .close:focus {
-    color: #000;
+    opacity: 1;
+    color: #FF0000;
     text-decoration: none;
     cursor: pointer;
 }
@@ -186,7 +163,7 @@ form input {
     justify-content: space-between;
     max-width: 800px;
     padding: 20px 20px;
-    height: 400px;
+    height: 420px;
     width: 500px;
 }
 
