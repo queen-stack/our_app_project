@@ -13,16 +13,33 @@
     <title>Word Web</title>
 </head>
 
-<body >
+<body>
     <header>
         <h2 class="page-title">Word Web</h2>
         <p>A tool to get the definition and hear the pronunciation for any word.
         </p>
-        <div> 
-             <!--Trigger the Modal from a link-->
-            <a data-toggle="modal" href="#modalWindow"><h3>Word of <br><span style="color:#634e69;">the Day</span></h3></a>
+        <div>
+            <!--Trigger the Modal from a link-->
+            <a data-toggle="modal" href="#modalWindow">
+                <h3 id="wodBtn" onclick="randomWord()">Word of <br><span style="color:#634e69;">the Day</span></h3>
+            </a>
         </div>
     </header>
+
+    <!-- This is for the word of the day modal -->
+    <!-- The Modal -->
+    <div id="wodModal" class="modal">
+        <!-- Modal content -->
+        <div class="modal-content">
+            <!-- &times; is the close (times) button -->
+            <span class="close">&times;</span>
+            <div id="wodText">
+                <p>Some text in the Modal..</p>
+            </div>
+        </div>
+    </div>
+    <!-- End of the the modal -->
+
     <div class="row no-gutters">
         <main class="col-12 col-lg-9 flex-column" id="word-search">
             <div class="m-5 row">
@@ -37,20 +54,20 @@
                             <div id="word-display">
                             </div>
                         </form>
-                    </div> 
+                    </div>
                 </div>
                 <!--history-->
                 <div class="col-4 col-md-6 col-xl-4 mb-4 flex-column">
                     <div class="card" id="history">
                         <h4 class="card-header">Previous</h4>
                         <div class="card-body" id="history-search">
-                            <p id ="searchHistoryList"></p>
+                            <p id="searchHistoryList"></p>
                         </div>
                     </div>
                 </div>
             </div>
-           
-        </div>
+
+    </div>
     </main>
     </div>
     <section class="modal-container">
@@ -68,7 +85,7 @@
                 </div>
                 <div class="modal-footer">
                     <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
-                  </div>
+                </div>
             </div>
         </div>
     </section>
