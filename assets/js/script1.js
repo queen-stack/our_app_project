@@ -146,10 +146,9 @@ function recallRandomWord(){
     randomWordData = JSON.parse(localStorage.getItem(localStorageKey1)) || [];
    if (randomWordData.length ===  0 || today.diff(randomWordData[0],"L")) {
       //variable needs to be updated at this point in the code to run the local storage
-      // wod = '';
    } 
    else{
-       wod = randomWordData[1];
+       wodModal = randomWordData[1];
    }
 }
 
