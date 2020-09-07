@@ -1,8 +1,19 @@
 const localStorageKey = 'wordSearchData';
+const localStorageKey1 = 'wordRandomData';
 const MAX_SEARCH_HISTORY = 5;
 var searchHistory;
 var inputEl = document.getElementById("wordText");
 var wordBtnEl = document.getElementById("wordBtn");
+var today = moment();
+today.hours(0);
+today.minutes(0);
+today.milliseconds(0);
+
+// var wod - this variable hold the word of the day that was retrieved TODAY.
+//           If wod === '' then when the user presses the "word of the day" button,
+//           call the fetch API to retrieve a new word.
+//           If wod !== '' then when the user presses the "word of the day " button,
+//           just display the word that is stored in wod.
 
 // -=-Begin modal for word of the day-=-
 // need moment.js hooked up to this
@@ -121,12 +132,11 @@ function randomWord() {
         });
 };
 
-// This is the error modal that the user sees instead of alerts
 
 // Uses the const localStorageKey listed above.
 function recallSearchHistory() {
     searchHistory = JSON.parse(localStorage.getItem(localStorageKey)) || [];
-    showItem();
+    populateSearchHistory();
 }
 
 
@@ -134,19 +144,19 @@ function recallSearchHistory() {
 // Added a while loop to limit size of the array to 5 (or adjust the constant).
 function updateSearchHistory(searchedWord) {
     searchedWord = searchedWord.toLowerCase();
+
     if (!searchHistory.includes(searchedWord)) {
         searchHistory.push(searchedWord);
         while (searchHistory.length > MAX_SEARCH_HISTORY) {
             searchHistory.shift(); //throwing away the first value in the list
         }
         localStorage.setItem(localStorageKey, JSON.stringify(searchHistory));
-        showItem();
+        populateSearchHistory();
     }
 }
 
 
-// Change "searchOfWords" to whatever ID given in list of searched for words in the HTML.
-function showItem() {
+function populateSearchHistory() {
     var historyE1 = document.getElementById("searchHistoryList");
     // Display users and messages in the browser
     $('#searchHistoryList').empty();
@@ -156,10 +166,29 @@ function showItem() {
         historyE1.appendChild(p);
     }
 }
+//Uses the const localStorageKey1 listed above.
+function recallRandomWord(){
+    randomWordData = JSON.parse(localStorage.getItem(localStorageKey1)) || [];
+   if (randomWordData.length ===  0 || today.diff(randomWordData[0],"L")) {
+      //variable needs to be updated at this point in the code to run the local storage
+   } 
+   else{
+       wodModal = randomWordData[1];
+   }
+}
+
+// Here's what the random word data looks like:
+//   randomWordData = [ date, wordOfTheDay ]
+//   randomWordData[0] === the date that the data was retrieved
+//   randomWordData[1] === the word that was retrieved on the date stored in [0]
+
+function updateRandomWord(randomWord) {
+    localStorage.setItem(localStorageKey1, JSON.stringify([ today, randomWord ]));
+}
 
 // This will load up the search history when the page is loaded.
 recallSearchHistory();
-randomWord();
+//randomWord();
 
 
 wordBtnEl.addEventListener("click", function(event) {
