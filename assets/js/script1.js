@@ -15,9 +15,6 @@ today.milliseconds(0);
 //           If wod !== '' then when the user presses the "word of the day " button,
 //           just display the word that is stored in wod.
 
-<<<<<<< HEAD
-// This code is for searching a word, getting back the definition, pronunciation, and audio clip
-=======
 // -=-Begin modal for word of the day-=-
 // need moment.js hooked up to this
 // Get the modal
@@ -42,7 +39,6 @@ window.onclick = function(event) {
 };
 // -=-END CODE FOR THE MODAL FUNCTION-=-
 
->>>>>>> bd40e925a2e15e1c7071299e11a225fa182c8da9
 function logAttributes(obj) {
     if (document.getElementById("output-div") != null) {
         document.getElementById("output-div").remove();
@@ -77,7 +73,7 @@ function logAttributes(obj) {
 function getApiData(searchText) {
     fetch('https://www.dictionaryapi.com/api/v3/references/collegiate/json/' + searchText + '?key=ec647c6b-fb7b-4fbf-a04f-e2348323bb08')
         .then(res => res.json()).then(json => logAttributes(json));
-        updateSearchHistory(searchText);
+    updateSearchHistory(searchText);
 }
 
 // This line is for getting the random word
@@ -147,14 +143,9 @@ function recallSearchHistory() {
 
 // Lower-case word to the check if it's in search history to locate if user typed:  "hi", "Hi" or "HI".
 // Added a while loop to limit size of the array to 5 (or adjust the constant).
-<<<<<<< HEAD
-function SearchHistory(searchedWord) {
-    searchedWord = searchedWord.toLowerCase();
-=======
 function updateSearchHistory(searchedWord) {
     searchedWord = searchedWord.toLowerCase();
 
->>>>>>> bd40e925a2e15e1c7071299e11a225fa182c8da9
     if (!searchHistory.includes(searchedWord)) {
         searchHistory.push(searchedWord);
         while (searchHistory.length > MAX_SEARCH_HISTORY) {
