@@ -15,6 +15,30 @@ today.milliseconds(0);
 //           If wod !== '' then when the user presses the "word of the day " button,
 //           just display the word that is stored in wod.
 
+// -=-Begin modal for word of the day-=-
+// need moment.js hooked up to this
+// Get the modal
+var modal = document.getElementById("wodModal");
+// Get the button that opens the modal
+var btn = document.getElementById("wodBtn");
+// Get the <span> element that closes the modal
+var span = document.getElementsByClassName("close")[0];
+// When the user clicks the button, open the modal 
+btn.onclick = function() {
+        modal.style.display = "block";
+    }
+    // When the user clicks on <span> (x), close the modal
+span.onclick = function() {
+        modal.style.display = "none";
+    }
+    // When the user clicks anywhere outside of the modal, close it
+window.onclick = function(event) {
+    if (event.target == modal) {
+        modal.style.display = "none";
+    }
+};
+// -=-END CODE FOR THE MODAL FUNCTION-=-
+
 function logAttributes(obj) {
     if (document.getElementById("output-div") != null) {
         document.getElementById("output-div").remove();
@@ -31,12 +55,12 @@ function logAttributes(obj) {
     let wordPronEl = document.createElement('p');
     wordPronEl.innerHTML = 'Pronunciation: ' + obj[0].hwi.prs[0].mw;
     document.getElementById('output-div').appendChild(wordPronEl)
-   
+
     let wordDescripEl = document.createElement('p');
     wordDescripEl.innerHTML = 'Definition: ' + obj[0].shortdef[0];
     document.getElementById('output-div').appendChild(wordDescripEl);
-    
-    let audio = new Audio ('https://media.merriam-webster.com/audio/prons/en/us/mp3/' + obj[0].hwi.prs[0].sound.audio[0] + '/' + obj[0].hwi.prs[0].sound.audio + '.mp3');
+
+    let audio = new Audio('https://media.merriam-webster.com/audio/prons/en/us/mp3/' + obj[0].hwi.prs[0].sound.audio[0] + '/' + obj[0].hwi.prs[0].sound.audio + '.mp3');
     let playBtnEl = document.createElement('button');
     playBtnEl.textContent = 'Play';
     playBtnEl.id = 'play-btn';
@@ -48,11 +72,11 @@ function logAttributes(obj) {
 
 function getApiData(searchText) {
     fetch('https://www.dictionaryapi.com/api/v3/references/collegiate/json/' + searchText + '?key=ec647c6b-fb7b-4fbf-a04f-e2348323bb08')
-    .then(res => res.json()).then(json => logAttributes(json));
+        .then(res => res.json()).then(json => logAttributes(json));
 }
 
 //var randomWord = function() {
-    function randomWord() {
+function randomWord() {
     fetch("https://wordsapiv1.p.rapidapi.com/words/?random=true", {
             "method": "GET",
             "headers": {
@@ -76,25 +100,25 @@ function getApiData(searchText) {
             };
 
             // Create variables for the h4 and the p elements to define
-            var wordTitle = document.querySelector("#title-container")
-            var defBody = document.querySelector("#p-container")
+            //var wordTitle = document.querySelector("#title-container")
+            var defBody = document.querySelector("#wodText")
 
             // Empty out the h4 and the p elements for the random word
-            wordTitle.innerHTML = "";
+            // wordTitle.innerHTML = "";
             defBody.innerHTML = "";
 
 
             // Create elements
             // Random word
-            var titleEl = document.createElement('h4');
-            var bodyEl = document.createElement('p');
+            // var titleEl = document.createElement('h4');
+            var bodyEl = document.createElement('h3');
 
             // giving the data an element
-            titleEl.textContent = word;
-            bodyEl.textContent = definition;
+            // titleEl.textContent = word;
+            bodyEl.textContent = word;
 
             // append the data element to the page
-            wordTitle.appendChild(titleEl);
+            // wordTitle.appendChild(titleEl);
             defBody.appendChild(bodyEl);
 
             //testing random word search history
@@ -118,12 +142,13 @@ function recallSearchHistory() {
 
 // Lower-case word to the check if it's in search history to locate if user typed:  "hi", "Hi" or "HI".
 // Added a while loop to limit size of the array to 5 (or adjust the constant).
-function SearchHistory(searchedWord) {
-    searchedWord = searchedWord.toLowerCase();                
+function updateSearchHistory(searchedWord) {
+    searchedWord = searchedWord.toLowerCase();
+
     if (!searchHistory.includes(searchedWord)) {
         searchHistory.push(searchedWord);
         while (searchHistory.length > MAX_SEARCH_HISTORY) {
-           searchHistory.shift();  //throwing away the first value in the list
+            searchHistory.shift(); //throwing away the first value in the list
         }
         localStorage.setItem(localStorageKey, JSON.stringify(searchHistory));
         populateSearchHistory();
@@ -169,5 +194,4 @@ recallSearchHistory();
 wordBtnEl.addEventListener("click", function(event) {
     event.preventDefault();
     getApiData(inputEl.value);
-  });
-
+});
