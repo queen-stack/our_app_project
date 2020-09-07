@@ -77,6 +77,7 @@ function logAttributes(obj) {
 function getApiData(searchText) {
     fetch('https://www.dictionaryapi.com/api/v3/references/collegiate/json/' + searchText + '?key=ec647c6b-fb7b-4fbf-a04f-e2348323bb08')
         .then(res => res.json()).then(json => logAttributes(json));
+        updateSearchHistory(searchText);
 }
 
 // This line is for getting the random word
