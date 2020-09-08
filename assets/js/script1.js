@@ -94,13 +94,14 @@ function randomWord() {
 
             // the api does not give the definition
             // Will have to tell the user that there is no definition
+            /*
             var definition
             if (response.results === undefined || response.results.length === 0) {
                 definition = "Definition Not Available"
             } else {
                 definition = response.results[0].definition;
             };
-
+*/
             // Create variables for the h4 and the p elements to define
             //var wordTitle = document.querySelector("#title-container")
             var defBody = document.querySelector("#wodText")
@@ -124,7 +125,7 @@ function randomWord() {
             defBody.appendChild(bodyEl);
 
             //testing random word search history
-            updateSearchHistory(word);
+            // updateSearchHistory(word);
 
 
 
@@ -188,7 +189,8 @@ function updateRandomWord(randomWord) {
 
 // This will load up the search history when the page is loaded.
 recallSearchHistory();
-//randomWord();
+// Calls the random word function to append the word of the day text
+randomWord();
 
 
 wordBtnEl.addEventListener("click", function(event) {
