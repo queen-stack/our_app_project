@@ -73,7 +73,7 @@ function logAttributes(obj) {
 function getApiData(searchText) {
     fetch('https://www.dictionaryapi.com/api/v3/references/collegiate/json/' + searchText + '?key=ec647c6b-fb7b-4fbf-a04f-e2348323bb08')
         .then(res => res.json()).then(json => logAttributes(json));
-        updateSearchHistory(searchText);
+    updateSearchHistory(searchText);
 }
 
 //var randomWord = function() {
@@ -93,13 +93,14 @@ function randomWord() {
 
             // the api does not give the definition
             // Will have to tell the user that there is no definition
+            /*
             var definition
             if (response.results === undefined || response.results.length === 0) {
                 definition = "Definition Not Available"
             } else {
                 definition = response.results[0].definition;
             };
-
+*/
             // Create variables for the h4 and the p elements to define
             //var wordTitle = document.querySelector("#title-container")
             var defBody = document.querySelector("#wodText")
@@ -123,7 +124,7 @@ function randomWord() {
             defBody.appendChild(bodyEl);
 
             //testing random word search history
-            updateSearchHistory(word);
+            // updateSearchHistory(word);
 
 
 
@@ -168,14 +169,13 @@ function populateSearchHistory() {
     }
 }
 //Uses the const localStorageKey1 listed above.
-function recallRandomWord(){
+function recallRandomWord() {
     randomWordData = JSON.parse(localStorage.getItem(localStorageKey1)) || [];
-   if (randomWordData.length ===  0 || today.diff(randomWordData[0],"L")) {
-      //variable needs to be updated at this point in the code to run the local storage
-   } 
-   else{
-       wodModal = randomWordData[1];
-   }
+    if (randomWordData.length === 0 || today.diff(randomWordData[0], "L")) {
+        //variable needs to be updated at this point in the code to run the local storage
+    } else {
+        wodModal = randomWordData[1];
+    }
 }
 
 // Here's what the random word data looks like:
@@ -184,12 +184,13 @@ function recallRandomWord(){
 //   randomWordData[1] === the word that was retrieved on the date stored in [0]
 
 function updateRandomWord(randomWord) {
-    localStorage.setItem(localStorageKey1, JSON.stringify([ today, randomWord ]));
+    localStorage.setItem(localStorageKey1, JSON.stringify([today, randomWord]));
 }
 
 // This will load up the search history when the page is loaded.
 recallSearchHistory();
-//randomWord();
+// Calls the random word function to append the word of the day text
+randomWord();
 
 
 wordBtnEl.addEventListener("click", function(event) {
