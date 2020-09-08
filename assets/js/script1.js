@@ -124,7 +124,7 @@ function randomWord() {
             defBody.appendChild(bodyEl);
 
             //testing random word search history
-            updateSearchHistory(word);
+            // updateSearchHistory(word);
 
 
 
