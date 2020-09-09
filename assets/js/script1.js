@@ -2,6 +2,7 @@ const localStorageKey = 'wordSearchData';
 const localStorageKey1 = 'wordRandomData';
 const MAX_SEARCH_HISTORY = 5;
 var searchHistory;
+var wodModalText; //changed
 var inputEl = document.getElementById("wordText");
 var wordBtnEl = document.getElementById("wordBtn");
 var today = moment();
@@ -78,6 +79,11 @@ function getApiData(searchText) {
 
 //var randomWord = function() {
 function randomWord() {
+    console.log("Entering randomWord()");
+    recallRandomWord();
+    console.log("In random word.  wodModalText = " + wodModalText);
+    if (wodModalText === "") {
+        console.log("Calling the rand word API");
     fetch("https://wordsapiv1.p.rapidapi.com/words/?random=true", {
             "method": "GET",
             "headers": {
@@ -88,20 +94,27 @@ function randomWord() {
         .then(function(response) {
             return response.json();
         }).then(function(response) {
-            // assign the data variables
-            var word = response.word
+           wodModalText = response.word;
+           updateRandomWord(wodModalText);
+        })
+        .catch(err => {
+            console.log(err);
+        });
+    }
+    displayRandomWord();
+};
 
-            // the api does not give the definition
-            // Will have to tell the user that there is no definition
-            /*
-            var definition
-            if (response.results === undefined || response.results.length === 0) {
-                definition = "Definition Not Available"
-            } else {
-                definition = response.results[0].definition;
-            };
-*/
-            // Create variables for the h4 and the p elements to define
+function bob() {
+    console.log("Bzzz");
+}
+
+
+function displayRandomWord() {
+            // assign the data variables
+            //var word = response.word
+            var word = wodModalText;  //changed
+
+           
             //var wordTitle = document.querySelector("#title-container")
             var defBody = document.querySelector("#wodText")
 
@@ -126,13 +139,7 @@ function randomWord() {
             //testing random word search history
             // updateSearchHistory(word);
 
-
-
-        })
-        .catch(err => {
-            console.log(err);
-        });
-};
+}
 
 
 // Uses the const localStorageKey listed above.
@@ -170,11 +177,14 @@ function populateSearchHistory() {
 }
 //Uses the const localStorageKey1 listed above.
 function recallRandomWord() {
-    randomWordData = JSON.parse(localStorage.getItem(localStorageKey1)) || [];
+    console.log("Entering recallRandomWord()");
+    var randomWordData = JSON.parse(localStorage.getItem(localStorageKey1)) || [];
     if (randomWordData.length === 0 || today.diff(randomWordData[0], "L")) {
         //variable needs to be updated at this point in the code to run the local storage
+        wodModalText = '';  // changed
     } else {
-        wodModal = randomWordData[1];
+        console.log("Word of the day is: " + randomWordData[1]);
+        wodModalText = randomWordData[1];
     }
 }
 
@@ -184,13 +194,13 @@ function recallRandomWord() {
 //   randomWordData[1] === the word that was retrieved on the date stored in [0]
 
 function updateRandomWord(randomWord) {
+    consoleLog("Entering updateRandomWord()");
     localStorage.setItem(localStorageKey1, JSON.stringify([today, randomWord]));
 }
 
 // This will load up the search history when the page is loaded.
 recallSearchHistory();
-// Calls the random word function to append the word of the day text
-randomWord();
+recallRandomWord();
 
 
 wordBtnEl.addEventListener("click", function(event) {
