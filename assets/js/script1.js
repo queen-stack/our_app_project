@@ -24,18 +24,18 @@ var btn = document.getElementById("wodBtn");
 var span = document.getElementsByClassName("close")[0];
 // When the user clicks the button, open the modal 
 btn.onclick = function() { //this is the important event listener
-       modal.style.display = "block";
-       randomWord();
-   }
-//   When the user clicks on <span> (x), close the modal
+        modal.style.display = "block";
+        randomWord();
+    }
+    //   When the user clicks on <span> (x), close the modal
 span.onclick = function() {
-       modal.style.display = "none";
-   }
-//   When the user clicks anywhere outside of the modal, close it
+        modal.style.display = "none";
+    }
+    //   When the user clicks anywhere outside of the modal, close it
 window.onclick = function(event) {
-   if (event.target == modal) {
-       modal.style.display = "none";
-   }
+    if (event.target == modal) {
+        modal.style.display = "none";
+    }
 };
 // -=-END CODE FOR THE MODAL FUNCTION-=-
 
@@ -84,48 +84,44 @@ function logAttributes(obj) {
 function getApiData(searchText) {
     fetch('https://www.dictionaryapi.com/api/v3/references/collegiate/json/' + searchText + '?key=ec647c6b-fb7b-4fbf-a04f-e2348323bb08')
         .then(res => res.json()).then(json => logAttributes(json));
-        updateSearchHistory(searchText);
+    updateSearchHistory(searchText);
 }
 
 // This line is for getting the random word
 //var randomWord = function() {
 function randomWord() {
-    console.log("Entering randomWord()");
     recallRandomWord();
-    console.log("In random word.  wodModalText = " + wodModalText);
     if (wodModalText == "") {
-        console.log("Calling the rand word API");
-    fetch("https://wordsapiv1.p.rapidapi.com/words/?random=true", {
-            "method": "GET",
-            "headers": {
-                "x-rapidapi-host": "wordsapiv1.p.rapidapi.com",
-                "x-rapidapi-key": "e8fc098c2emsh10a4d146e4331acp1b1ed0jsn40b66b5dada6"
-            }
-        })
-        .then(function(response) {
-            return response.json();
-        }).then(function(response) {
-        wodModalText = response.word //changed, getting the data from
-           updateRandomWord(wodModalText);
-           console.log(wodModalText);
-        })
-        .catch(err => {
-            console.log(err);
-        });
+        fetch("https://wordsapiv1.p.rapidapi.com/words/?random=true", {
+                "method": "GET",
+                "headers": {
+                    "x-rapidapi-host": "wordsapiv1.p.rapidapi.com",
+                    "x-rapidapi-key": "e8fc098c2emsh10a4d146e4331acp1b1ed0jsn40b66b5dada6"
+                }
+            })
+            .then(function(response) {
+                return response.json();
+            }).then(function(response) {
+                wodModalText = response.word //changed, getting the data from
+                updateRandomWord(wodModalText);
+            })
+            .catch(err => {
+                console.log(err);
+            });
     }
     displayRandomWord();
 };
 //modal function calling RandomWord
 function displayRandomWord() {
-            // assign the data variables
-            var word = wodModalText;  
-            var defBody = document.querySelector("#wodText")
-            defBody.innerHTML = "";
-            var bodyEl = document.createElement('h3');
-            bodyEl.textContent = word;
+    // assign the data variables
+    var word = wodModalText;
+    var defBody = document.querySelector("#wodText")
+    defBody.innerHTML = "";
+    var bodyEl = document.createElement('h3');
+    bodyEl.textContent = word;
 
-            // append the data element to the page
-            defBody.appendChild(bodyEl);
+    // append the data element to the page
+    defBody.appendChild(bodyEl);
 }
 
 // Uses the const localStorageKey listed above.
@@ -163,12 +159,10 @@ function populateSearchHistory() {
 }
 //Uses the const localStorageKey1 listed above.
 function recallRandomWord() {
-    console.log("Entering recallRandomWord()");
     var randomWordData = JSON.parse(localStorage.getItem(localStorageKey1)) || [];
     if (randomWordData.length === 0 || today.diff(moment(randomWordData[0], "L"))) {
-        wodModalText = '';  // changed
+        wodModalText = ''; // changed
     } else {
-        console.log("Word of the day is: " + randomWordData[1]);
         wodModalText = randomWordData[1];
     }
 }
@@ -179,7 +173,6 @@ function recallRandomWord() {
 //   randomWordData[1] === the word that was retrieved on the date stored in [0]
 
 function updateRandomWord(randomWord) {
-    console.log("Entering updateRandomWord()");
     localStorage.setItem(localStorageKey1, JSON.stringify([today, randomWord]));
 }
 
