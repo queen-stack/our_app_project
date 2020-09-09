@@ -10,14 +10,13 @@ today.hours(0);
 today.minutes(0);
 today.milliseconds(0);
 
-// var wod - this variable hold the word of the day that was retrieved TODAY.
-//           If wod === '' then when the user presses the "word of the day" button,
+// var wodModalText - this variable hold the word of the day that was retrieved TODAY.
+//           If wodModalText === '' then when the user presses the "word of the day" button,
 //           call the fetch API to retrieve a new word.
-//           If wod !== '' then when the user presses the "word of the day " button,
-//           just display the word that is stored in wod.
+//           If wodModalText !== '' then when the user presses the "word of the day " button,
+//           just display the word that is stored in wodModalText.
 
 // -=-Begin modal for word of the day-=-
-// need moment.js hooked up to this
 // Get the modal
 var modal = document.getElementById("wodModal");
 // Get the button that opens the modal
@@ -26,17 +25,17 @@ var btn = document.getElementById("wodBtn");
 var span = document.getElementsByClassName("close")[0];
 // When the user clicks the button, open the modal 
 btn.onclick = function() {
-        modal.style.display = "block";
-    }
-    // When the user clicks on <span> (x), close the modal
+       modal.style.display = "block";
+   }
+//   When the user clicks on <span> (x), close the modal
 span.onclick = function() {
-        modal.style.display = "none";
-    }
-    // When the user clicks anywhere outside of the modal, close it
+       modal.style.display = "none";
+   }
+//   When the user clicks anywhere outside of the modal, close it
 window.onclick = function(event) {
-    if (event.target == modal) {
-        modal.style.display = "none";
-    }
+   if (event.target == modal) {
+       modal.style.display = "none";
+   }
 };
 // -=-END CODE FOR THE MODAL FUNCTION-=-
 
@@ -103,10 +102,6 @@ function randomWord() {
     }
     displayRandomWord();
 };
-
-function bob() {
-    console.log("Bzzz");
-}
 
 
 function displayRandomWord() {
@@ -194,13 +189,12 @@ function recallRandomWord() {
 //   randomWordData[1] === the word that was retrieved on the date stored in [0]
 
 function updateRandomWord(randomWord) {
-    consoleLog("Entering updateRandomWord()");
+    console.log("Entering updateRandomWord()");
     localStorage.setItem(localStorageKey1, JSON.stringify([today, randomWord]));
 }
 
 // This will load up the search history when the page is loaded.
 recallSearchHistory();
-recallRandomWord();
 
 
 wordBtnEl.addEventListener("click", function(event) {
