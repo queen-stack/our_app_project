@@ -104,13 +104,14 @@ function randomWord() {
 
             // the api does not give the definition
             // Will have to tell the user that there is no definition
+            /*
             var definition
             if (response.results === undefined || response.results.length === 0) {
                 definition = "Definition Not Available"
             } else {
                 definition = response.results[0].definition;
             };
-
+*/
             // Create variables for the h4 and the p elements to define
             //var wordTitle = document.querySelector("#title-container")
             var defBody = document.querySelector("#wodText")
@@ -134,7 +135,7 @@ function randomWord() {
             defBody.appendChild(bodyEl);
 
             //testing random word search history
-            updateSearchHistory(word);
+            // updateSearchHistory(word);
 
 
 
@@ -179,14 +180,13 @@ function populateSearchHistory() {
     }
 }
 //Uses the const localStorageKey1 listed above.
-function recallRandomWord(){
+function recallRandomWord() {
     randomWordData = JSON.parse(localStorage.getItem(localStorageKey1)) || [];
-   if (randomWordData.length ===  0 || today.diff(randomWordData[0],"L")) {
-      //variable needs to be updated at this point in the code to run the local storage
-   } 
-   else{
-       wodModal = randomWordData[1];
-   }
+    if (randomWordData.length === 0 || today.diff(randomWordData[0], "L")) {
+        //variable needs to be updated at this point in the code to run the local storage
+    } else {
+        wodModal = randomWordData[1];
+    }
 }
 
 // Here's what the random word data looks like:
@@ -195,12 +195,12 @@ function recallRandomWord(){
 //   randomWordData[1] === the word that was retrieved on the date stored in [0]
 
 function updateRandomWord(randomWord) {
-    localStorage.setItem(localStorageKey1, JSON.stringify([ today, randomWord ]));
+    localStorage.setItem(localStorageKey1, JSON.stringify([today, randomWord]));
 }
 
 // This will load up the search history when the page is loaded.
 recallSearchHistory();
-//randomWord();
+randomWord();
 
 
 wordBtnEl.addEventListener("click", function(event) {
