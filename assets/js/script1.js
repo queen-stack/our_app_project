@@ -49,31 +49,42 @@ function logAttributes(obj) {
     document.getElementById('word-display').appendChild(outputDivEl);
 
     let wordNameEl = document.createElement("p");
-    wordNameEl.innerHTML = 'Word: ' + obj[0].hwi.hw;
+    if (typeof obj[0].hwi !== 'undefined') {
+        wordNameEl.innerHTML = 'Word: ' + obj[0].hwi.hw;
+    } else {
+        wordNameEl.innerHTML = 'Word not found!';
+    }
     document.getElementById('output-div').appendChild(wordNameEl);
 
     let wordPronEl = document.createElement('p');
-    wordPronEl.innerHTML = 'Pronunciation: ' + obj[0].hwi.prs[0].mw;
+    if (typeof obj[0].hwi !== 'undefined') {
+        wordPronEl.innerHTML = 'Pronunciation: ' + obj[0].hwi.prs[0].mw;
+    }
     document.getElementById('output-div').appendChild(wordPronEl)
 
     let wordDescripEl = document.createElement('p');
-    wordDescripEl.innerHTML = 'Definition: ' + obj[0].shortdef[0];
+    if (typeof obj[0].hwi !== 'undefined') {
+        wordDescripEl.innerHTML = 'Definition: ' + obj[0].shortdef[0];
+    }
     document.getElementById('output-div').appendChild(wordDescripEl);
 
-    let audio = new Audio('https://media.merriam-webster.com/audio/prons/en/us/mp3/' + obj[0].hwi.prs[0].sound.audio[0] + '/' + obj[0].hwi.prs[0].sound.audio + '.mp3');
-    let playBtnEl = document.createElement('button');
-    playBtnEl.textContent = 'Play';
-    playBtnEl.id = 'play-btn';
-    document.getElementById('output-div').appendChild(playBtnEl);
-    document.getElementById('play-btn').addEventListener('click', function() {
-        audio.play();
-    });
+    if (typeof obj[0].hwi !== 'undefined') {
+        let audio = new Audio('https://media.merriam-webster.com/audio/prons/en/us/mp3/' + obj[0].hwi.prs[0].sound.audio[0] + '/' + obj[0].hwi.prs[0].sound.audio + '.mp3');
+        let playBtnEl = document.createElement('button');
+        playBtnEl.textContent = 'Play';
+        playBtnEl.id = 'play-btn';
+        document.getElementById('output-div').appendChild(playBtnEl);
+        document.getElementById('play-btn').addEventListener('click', function() {
+            event.preventDefault();
+            audio.play();
+        });
+    }
 }
 
 function getApiData(searchText) {
     fetch('https://www.dictionaryapi.com/api/v3/references/collegiate/json/' + searchText + '?key=ec647c6b-fb7b-4fbf-a04f-e2348323bb08')
         .then(res => res.json()).then(json => logAttributes(json));
-    updateSearchHistory(searchText);
+        updateSearchHistory(searchText);
 }
 
 //var randomWord = function() {
@@ -195,9 +206,12 @@ function updateRandomWord(randomWord) {
 
 // This will load up the search history when the page is loaded.
 recallSearchHistory();
+randomWord();
 
 
 wordBtnEl.addEventListener("click", function(event) {
-    event.preventDefault();
-    getApiData(inputEl.value);
+    if (inputEl.value !== '') {
+        event.preventDefault();
+        getApiData(inputEl.value);
+    }
 });
