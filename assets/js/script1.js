@@ -23,8 +23,9 @@ var btn = document.getElementById("wodBtn");
 // Get the <span> element that closes the modal
 var span = document.getElementsByClassName("close")[0];
 // When the user clicks the button, open the modal 
-btn.onclick = function() {
+btn.onclick = function() { //this is the important event listener
        modal.style.display = "block";
+       randomWord();
    }
 //   When the user clicks on <span> (x), close the modal
 span.onclick = function() {
@@ -92,7 +93,7 @@ function randomWord() {
     console.log("Entering randomWord()");
     recallRandomWord();
     console.log("In random word.  wodModalText = " + wodModalText);
-    if (wodModalText === "") {
+    if (wodModalText == "") {
         console.log("Calling the rand word API");
     fetch("https://wordsapiv1.p.rapidapi.com/words/?random=true", {
             "method": "GET",
@@ -104,7 +105,7 @@ function randomWord() {
         .then(function(response) {
             return response.json();
         }).then(function(response) {
-           var wodModalText = response.word //changed, getting the data from
+        wodModalText = response.word //changed, getting the data from
            updateRandomWord(wodModalText);
            console.log(wodModalText);
         })
@@ -114,38 +115,17 @@ function randomWord() {
     }
     displayRandomWord();
 };
-
-
+//modal function calling RandomWord
 function displayRandomWord() {
             // assign the data variables
-            //var word = response.word
-            var word = wodModalText;  //changed
-
-           
-            //var wordTitle = document.querySelector("#title-container")
+            var word = wodModalText;  
             var defBody = document.querySelector("#wodText")
-
-            // Empty out the h4 and the p elements for the random word
-            // wordTitle.innerHTML = "";
             defBody.innerHTML = "";
-
-
-            // Create elements
-            // Random word
-            // var titleEl = document.createElement('h4');
             var bodyEl = document.createElement('h3');
-
-            // giving the data an element
-            // titleEl.textContent = word;
             bodyEl.textContent = word;
 
             // append the data element to the page
-            // wordTitle.appendChild(titleEl);
             defBody.appendChild(bodyEl);
-
-            //testing random word search history
-            // updateSearchHistory(word);
-
 }
 
 // Uses the const localStorageKey listed above.
@@ -185,8 +165,7 @@ function populateSearchHistory() {
 function recallRandomWord() {
     console.log("Entering recallRandomWord()");
     var randomWordData = JSON.parse(localStorage.getItem(localStorageKey1)) || [];
-    if (randomWordData.length === 0 || today.diff(randomWordData[0], "L")) {
-        //variable needs to be updated at this point in the code to run the local storage
+    if (randomWordData.length === 0 || today.diff(moment(randomWordData[0], "L"))) {
         wodModalText = '';  // changed
     } else {
         console.log("Word of the day is: " + randomWordData[1]);
