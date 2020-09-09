@@ -2,7 +2,6 @@ const localStorageKey = 'wordSearchData';
 const localStorageKey1 = 'wordRandomData';
 const MAX_SEARCH_HISTORY = 5;
 var searchHistory;
-var wodModalText; //changed
 var inputEl = document.getElementById("wordText");
 var wordBtnEl = document.getElementById("wordBtn");
 var today = moment();
@@ -104,8 +103,9 @@ function randomWord() {
         .then(function(response) {
             return response.json();
         }).then(function(response) {
-           wodModalText = response.word;
+           var wodModalText = response.word //changed, getting the data from
            updateRandomWord(wodModalText);
+           console.log(wodModalText);
         })
         .catch(err => {
             console.log(err);
