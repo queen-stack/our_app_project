@@ -185,6 +185,7 @@ form input {
         margin-left: unset;
         width: 350px;
         padding: 20px;
+        height: 650px;
     }
     header {
         display: flexbox;
