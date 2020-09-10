@@ -53,7 +53,7 @@ Devices and Browsers used:
 * pronunciation of the definition
 
 ## Author
-* Brian Lopez https://github.com/brianslopez
-* Ann-Marie Orozco https://github.com/ann760
-* Jenifer Queen https://github.com/queen-stack
-* Michael Dreesen https://github.com/mdreesen
+* Brian Lopez [Brian's git repository](https://github.com/brianslopez) [Brian's Portfolio](https://github.com/brianslopez/challenge-02)
+* Ann-Marie Orozco [Ann-Marie's git repository](https://github.com/ann760) [Ann-Marie's Portfolio](https://github.com/ann760/MyPortfolio)
+* Jenifer Queen [Jenifer's git repository](https://github.com/queen-stack) [Jenifer's Portfolio](https://queen-stack.github.io/Challeng2/)
+* Michael Dreesen [Michael's git repository](https://github.com/mdreesen) [Michael's Portfolio](https://mdreesen.github.io/portfolio/)
