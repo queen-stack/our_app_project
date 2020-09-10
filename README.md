@@ -3,7 +3,7 @@
 
 
 # our_app_
-* Dictionary app that allows user to search for a term returns definition, pronunciation and a new word of the day.  Provides more learning than bargained for! For those that are  avid learners and looking to “hear the word pronounced correctly”
+* Dictionary app that allows user to search for a term returns definition, pronunciation and a new word of the day.  Provides more learning than bargained for! For those that are avid learners and looking to “hear the word pronounced correctly”
 
 
 ## Built With
@@ -23,7 +23,7 @@
 * I WANT to see the definitions to searched term
 
 ## Acceptance Criteria
-* GIVEN a word is input into the dashboard 
+* GIVEN a word entered into the search form 
 * WHEN I view a searched word
 * THEN I am presented with current definition for the searched word
 * THEN I am presented with synonyms 
@@ -39,6 +39,18 @@ https://queen-stack.github.io/our_app_project/
  * Access requires internet service
 
 ![WordSearch](./assets/images/wordsearch.jpg)
+![WordSearch](./assets/images/wordsearch1.jpg)
+
+## Tested on the following browser
+Devices and Browsers used:
+* Windows 10 (64 bit) - Chrome: 85, Edge(Chromium): 85, Firefox: 80, IE11: 11.5
+* OS X (Beta Big-Sur) (64 bit) - Safari: 14, Chrome: 85, Edge(Chromium): 85, Firefox: 80 
+* IE not supported
+
+## Future Enhancement
+* edge bug fix
+* translator
+* pronunciation of the definition
 
 ## Author
 * Brian Lopez https://github.com/brianslopez
