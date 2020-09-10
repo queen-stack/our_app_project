@@ -39,7 +39,7 @@ https://queen-stack.github.io/our_app_project/
  * Access requires internet service
 
 ![WordSearch](./assets/images/wordsearch.jpg)
-![WordSearch](./assets/images/wordsearch1.jpg)
+![WordSearch](./assets/images/wordsearchModal.jpg)
 
 ## Tested on the following browser
 Devices and Browsers used:

@@ -87,6 +87,7 @@ function getApiData(searchText) {
         updateSearchHistory(searchText);
 }
 
+// This line is for getting the random word
 //var randomWord = function() {
 function randomWord() {
     console.log("Entering randomWord()");
@@ -126,7 +127,6 @@ function displayRandomWord() {
             // append the data element to the page
             defBody.appendChild(bodyEl);
 }
-
 
 // Uses the const localStorageKey listed above.
 function recallSearchHistory() {
