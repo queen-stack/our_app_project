@@ -54,6 +54,6 @@ Devices and Browsers used:
 
 ## Author
 * Brian Lopez - [Brian's Portfolio](https://brianslopez.github.io/challenge-02/) - [Brian's git repository](https://github.com/brianslopez) 
-* Ann-Marie Orozco - [Ann-Marie's Portfolio](ann760.github.io/myportfolio/) - [Ann-Marie's git repository](https://github.com/ann760)
+* Ann-Marie Orozco - [Ann-Marie's Portfolio](https://ann760.github.io/MyPortfolio/) - [Ann-Marie's git repository](https://github.com/ann760)
 * Jenifer Queen - [Jenifer's Portfolio](https://queen-stack.github.io/Challeng2/) - [Jenifer's git repository](https://github.com/queen-stack)
 * Michael Dreesen - [Michael's Portfolio](https://mdreesen.github.io/portfolio/) - [Michael's git repository](https://github.com/mdreesen) 
