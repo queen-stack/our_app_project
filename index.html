@@ -14,17 +14,22 @@
 </head>
 
 <body>
-    <header>
-        <h2 class="page-title">Word Web</h2>
-        <p>A tool to get the definition and hear the pronunciation for any word.
-        </p>
-        <div>
-            <!--Trigger the Modal from a link-->
-            <a data-toggle="modal" href="#modalWindow">
-                <h3 id="wodBtn">Word of <br><span style="color:#634e69;">the Day</span></h3>
-            </a>
+    <header class="row">
+        <div class="col-3">
+          <!--Trigger the Modal from a link-->
+          <a data-toggle="modal" href="#modalWindow">
+            <h3 id="wodBtn">
+              Word of <br /><span style="color: #634e69">the Day</span>
+            </h3>
+          </a>
         </div>
-    </header>
+        <div class="col-9" style="text-align: center">
+          <h2 class="page-title">Word Web</h2>
+          <p>
+            A tool to get the definition and hear the pronunciation for any word.
+          </p>
+        </div>
+      </header>
 
     <!-- This is for the word of the day modal -->
     <!-- The Modal -->
@@ -38,35 +43,31 @@
     </div>
     <!-- End of the the modal -->
 
-    <div class="row no-gutters">
-        <main class="col-12 col-lg-9 flex-column" id="word-search">
-            <div class="m-5 row">
-                <!--word container-->
-                <div class="col-8 flex-column" id="word-container">
-                    <div class="card">
-                        <h4 class="card-header">Search for a Word:</h4>
-                        <form id="word-form" class="card-body">
-                            <label class="form-label" for="wordText"></label>
-                            <input type="text" id="wordText" class="text" placeholder="Search" />
-                            <button class="btn" id="wordBtn" type="submit"><i class="fas fa-search"></i></button>
-                            <div id="word-display">
-                            </div>
-                        </form>
-                    </div>
-                </div>
-                <!--history-->
-                <div class="col-4 col-md-6 col-xl-4 mb-4 flex-column">
-                    <div class="card" id="history">
-                        <h4 class="card-header">Previous</h4>
-                        <div class="card-body" id="history-search">
-                            <p id="searchHistoryList"></p>
+    <div class="container-fluid">
+        <div class="row">
+            <!--word container-->
+            <div class="col-sm-8" id="search-con">
+                <div class="card" id="search">
+                    <h4 class="card-header">Search for a Word:</h4>
+                    <form id="word-form" class="card-body">
+                        <label class="form-label" for="wordText"></label>
+                        <input type="text" id="wordText" class="text" placeholder="Definition" />
+                        <button class="btn" id="wordBtn" type="submit"><i class="fas fa-search"></i></button>
+                        <div id="word-display">
                         </div>
+                    </form>
+                </div>
+            </div>
+            <!--history-->
+            <div class="col-sm-4" id="history-con">
+                <div class="card" id="history">
+                    <h4 class="card-header">Previous</h4>
+                    <div class="card-body" id="history-search">
+                        <p id="searchHistoryList"></p>
                     </div>
                 </div>
             </div>
-
-    </div>
-    </main>
+        </div>
     </div>
 
     <script src="https://code.jquery.com/jquery-3.4.1.min.js"></script>
